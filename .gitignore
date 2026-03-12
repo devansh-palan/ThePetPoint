@@ -1,29 +1,27 @@
-# dependencies
+# Dependencies
 node_modules/
 
-# environment variables
+# Environment variables
 .env
+.env.local
+.env.development
 
-# logs
+# Logs
 logs
 *.log
 npm-debug.log*
-
-# build files
-dist/
-build/
 
 # OS files
 .DS_Store
 Thumbs.db
 
+# Build output
+dist/
+build/
+
 # IDE files
 .vscode/
 .idea/
 
-# coverage
-coverage/
-
-# temporary files
-*.tmp
-*.temp
+# TypeScript
+*.tsbuildinfo
