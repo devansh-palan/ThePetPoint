@@ -5,7 +5,7 @@ import pool from '../db';
 
 const COOKIE_OPTS = {
   httpOnly: true,
-  sameSite: 'strict' as const,
+  sameSite: 'none' as const,
   secure: process.env.NODE_ENV === 'production',
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
 };
@@ -71,7 +71,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     }
 
     const user = result.rows[0];
-    
+
     // Prevent inter-domain logins
     if (user.role !== expectedRole) {
       res.status(403).json({ error: `Account exists but is registered as a ${user.role}, not a ${expectedRole}.` });
@@ -100,7 +100,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
 // POST /api/auth/logout
 export const logout = (_req: Request, res: Response): void => {
-  res.clearCookie('token', { httpOnly: true, sameSite: 'strict', secure: process.env.NODE_ENV === 'production' });
+  res.clearCookie('token', { httpOnly: true, sameSite: 'none', secure: process.env.NODE_ENV === 'production' });
   res.json({ message: 'Logged out successfully' });
 };
 
